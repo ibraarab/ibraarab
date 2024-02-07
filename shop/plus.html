@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оплата товара</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa; /* Цвет фона */
+    }
+
+    .container {
+      margin-top: 50px; /* Отступ сверху */
+      border: 1px solid #ced4da; /* Границы формы */
+      border-radius: 8px; /* Скругление углов формы */
+      padding: 20px;
+      background-color: #ffffff; /* Цвет фона формы */
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    /* Add borders to form fields */
+    input {
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      padding: 8px;
+    }
+
+    /* Add some space above and below the form */
+    form {
+      margin: 20px 0;
+    }
+
+    /* Style for the calculate button */
+    .btn-primary {
+      width: 100%;
+    }
+
+    /* Style for responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="text-center mb-4">Оплата товара</h2>
+    <form>
+      <div class="form-group">
+        <label for="quantity">Количество отзывов:</label>
+        <input type="number" class="form-control" id="quantity" min="1" value="1">
+      </div>
+      <div class="form-group">
+        <label for="price">Цена:</label>
+        <input type="text" class="form-control" id="price" readonly>
+      </div>
+      <div class="form-group">
+        <label for="adLink">Ссылка на объявление:</label>
+        <input type="text" class="form-control" id="adLink">
+      </div>
+      <div class="form-group">
+        <label for="keyword">Ключевое слово:</label>
+        <input type="text" class="form-control" id="keyword" required placeholder="Слово с которого будет начинаться диалог">
+      </div>
+      <div class="form-group">
+        <label for="promoCode">Промокод (если есть):</label>
+        <input type="text" class="form-control" id="promoCode">
+      </div>
+      <button type="button" class="btn btn-primary" onclick="calculatePrice()">Рассчитать цену</button>
+    </form>
+  </div>
+
+  <script>
+    function calculatePrice() {
+      var quantity = parseInt(document.getElementById("quantity").value);
+      var price = quantity * 150;
+      var promoCode = document.getElementById("promoCode").value;
+      if (promoCode === "Арсен") {
+        price *= 0.9; // Применяем скидку 10%
+      }
+      document.getElementById("price").value = price.toFixed(2) + " руб";
+    }
+  </script>
+</body>
+
+</html>
